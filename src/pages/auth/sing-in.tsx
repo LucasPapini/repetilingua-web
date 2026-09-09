@@ -2,28 +2,60 @@ import { Button } from "@/components/Button";
 import { Input } from "@/components/Input";
 import { Title } from "@/components/Title";
 import { ChevronRight } from "lucide-react";
+import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import z from "zod";
+import { zodResolver } from '@hookform/resolvers/zod';
+
+const signInSchema = z.object({
+  email: z.string().email('O endereço de e-mail está invalido'),
+  password: z.string().min(6, 'A senha precisa ter no minimo 6 caracteres'),
+})
+
+type SignInForm = z.infer<typeof signInSchema>
 
 export function SingIn() {
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<SignInForm>({
+    resolver: zodResolver(signInSchema),
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+  });
+
+  async function handleSignIn(data: SignInForm) {
+    // data já vem 100% validado e tipado pelo Zod
+    console.log('Dados do login:', data);
+  }
+
   return (
     <div className="flex flex-col gap-1 font-sans text-brand-primary-navy bg-gray-100 sm:bg-white p-5 sm:p-0 rounded-2xl">
       <Title title="Bem-vindo de volta" />
       <span className="text-xs font-medium">Por favor entre com suas crendenciais para acessar o sistema.</span>
 
-      <form className="mt-5 flex flex-col gap-4">
+      <form className="mt-5 flex flex-col gap-4" onSubmit={handleSubmit(handleSignIn)}>
         <Input
           type="text"
           label="E-mail"
           placeholder="Ex: name@provedor.com"
+          error={errors.email?.message}
+          {...register('email')}
         />
 
         <Input
           type="password"
           label="Senha"
           placeholder="******************"
+          error={errors.password?.message}
+          {...register('password')}
         />
 
-        <Button type="submit" variant="secondary" className="mt-2">
+        <Button type="submit" variant="secondary" className="mt-2" isLoading={isSubmitting}>
           Acessar Plataforma
         </Button>
       </form>
@@ -39,6 +71,7 @@ export function SingIn() {
           </p>
         </Link>
       </div>
+
     </div>
   );
 }

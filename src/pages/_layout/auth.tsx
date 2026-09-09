@@ -1,11 +1,14 @@
+import { Languages } from "lucide-react";
 import { Outlet } from "react-router-dom";
 
 export function AuthLayout() {
   return (
-    <div className="grid min-h-screen grid-cols-2 antialiased">
-      <div className="border-foreground/5 bg-muted text-muted-foreground flex h-full flex-col justify-between border-r p-10">
+    <div className="grid min-h-screen grid-cols-2 antialiased text-brand-surface-base font-sans">
+      <div className="border-foreground/5 bg-muted text-muted-foreground flex h-full flex-col justify-between border-r p-10 bg-brand-primary-deep">
         <div className="text-foreground flex items-center gap-3 text-lg">
-          {/* <Pizza className="h-5 w-5" /> */}
+          <div className="h-8 w-8 bg-red-600 rounded flex items-center justify-center">
+            <Languages className="h-5 w-5" color="#FFF" />
+          </div>
           <span className="font-semibold">RepetiLingua</span>
         </div>
 

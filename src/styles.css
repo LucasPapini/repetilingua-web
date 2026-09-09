@@ -1,1 +1,18 @@
 @import "tailwindcss";
+
+@theme {
+  /* 1. Cores do Projeto */
+  --color-brand-primary-deep: #002147;
+  --color-brand-primary-navy: #000a1e;
+  --color-brand-action-red: #b42435;
+  --color-brand-academic-gold: #735c00;
+
+  --color-brand-surface-base: #f8f9fa;
+  --color-brand-container-low: #f3f4f5;
+  --color-brand-container: #edeeef;
+  --color-brand-container-high: #e7e8e9;
+  --color-brand-container-highest: #e1e3e4;
+
+  /* 2. Tipografia */
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+}

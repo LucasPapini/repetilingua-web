@@ -1,12 +1,10 @@
-import { Button } from '@/components/Button'
 import './styles.css'
+import { RouterProvider } from 'react-router-dom'
+import { router } from '@/routes/routes'
 
 function App() {
   return (
-    <>
-      <h1>Hellor world</h1>
-      <Button title="Teste" />
-    </>
+    <RouterProvider router={router} />
   )
 }
 

@@ -13,7 +13,7 @@ export function AuthLayout() {
         </div>
 
         <footer className="text-sm">
-          Painel para estudo de linguas &copy; repetilingua - {new Date().getFullYear()}
+          Painel para estudo das linguas &copy; repetilingua - {new Date().getFullYear()}
         </footer>
       </div>
 

@@ -1,12 +1,13 @@
 import { Button } from "@/components/Button";
 import { Input } from "@/components/Input";
-import { MoveRight } from "lucide-react";
+import { Title } from "@/components/Title";
+import { ChevronRight, MoveRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export function SingIn() {
   return (
     <div className="flex flex-col gap-1 font-sans text-brand-primary-navy">
-      <h2 className="font-bold text-xl">Bem-vindo de volta</h2>
+      <Title title="Bem-vindo de volta" />
       <span className="text-xs font-medium">Por favor entre com suas crendenciais para acessar o sistema.</span>
 
       <form className="mt-5 flex flex-col gap-4">
@@ -34,7 +35,7 @@ export function SingIn() {
         <Link to="/sign-up">
           <p className="flex gap-1 justify-center items-center text-base font-bold">
             Criar Conta
-            <MoveRight />
+            <ChevronRight />
           </p>
         </Link>
       </div>

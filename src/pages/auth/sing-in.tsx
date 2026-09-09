@@ -1,12 +1,12 @@
 import { Button } from "@/components/Button";
 import { Input } from "@/components/Input";
 import { Title } from "@/components/Title";
-import { ChevronRight, MoveRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export function SingIn() {
   return (
-    <div className="flex flex-col gap-1 font-sans text-brand-primary-navy">
+    <div className="flex flex-col gap-1 font-sans text-brand-primary-navy bg-gray-100 sm:bg-white p-5 sm:p-0 rounded-2xl">
       <Title title="Bem-vindo de volta" />
       <span className="text-xs font-medium">Por favor entre com suas crendenciais para acessar o sistema.</span>
 

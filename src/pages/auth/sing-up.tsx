@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 export function SingUp() {
   return (
-    <div className="flex flex-col gap-1 font-sans text-brand-primary-navy">
+    <div className="flex flex-col gap-1 font-sans text-brand-primary-navy bg-gray-100 sm:bg-white p-5 sm:p-0 rounded-2xl">
       <Title title="Cadastre-se" />
       <span className="text-xs font-medium">Realize o seu cadastro para acessar a plataforma.</span>
 

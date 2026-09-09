@@ -67,7 +67,7 @@ export function SingIn() {
         <Link to="/sign-up">
           <p className="flex gap-1 justify-center items-center text-base font-bold">
             Criar Conta
-            <ChevronRight />
+            <ChevronRight size={18} />
           </p>
         </Link>
       </div>

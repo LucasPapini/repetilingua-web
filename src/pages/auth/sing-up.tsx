@@ -56,6 +56,7 @@ export function SingUp() {
   async function handleSignUp(data: SignUpForm) {
     console.log('Dados do cadastro:', data);
   }
+
   return (
     <div onSubmit={handleSubmit(handleSignUp)} className="flex flex-col gap-1 font-sans text-brand-primary-navy bg-gray-100 sm:bg-white p-5 sm:p-0 rounded-2xl">
       <Title title="Cadastre-se" />
@@ -123,7 +124,7 @@ export function SingUp() {
         <Link to="/sign-in">
           <p className="flex gap-1 justify-center items-center text-base font-bold">
             Clique aqui para entrar
-            <ChevronLeft />
+            <ChevronLeft size={18} />
           </p>
         </Link>
       </div>

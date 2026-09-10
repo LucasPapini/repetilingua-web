@@ -6,7 +6,7 @@ export function PrivateRoute() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-zinc-950 flex items-center justify-center text-zinc-400">
+      <div className="flex min-h-screen items-center justify-center bg-zinc-950 text-zinc-400">
         Carregando sessão...
       </div>
     );

@@ -3,7 +3,9 @@ import { SingIn } from '@/pages/auth/sing-in';
 import { SingUp } from '@/pages/auth/sing-up';
 
 import { createBrowserRouter, Navigate } from 'react-router-dom';
-import { PrivateRoute } from './privateRoute';
+import { PrivateRoute } from './PrivateRoute';
+import { AppLayout } from '@/pages/_layout/app';
+import { Dashboard } from '@/pages/app/dashboard';
 
 export const router = createBrowserRouter([
   {
@@ -16,11 +18,17 @@ export const router = createBrowserRouter([
     ]
   },
   {
+    path: '/app',
     element: <PrivateRoute />,
     children: [
       {
-        path: '/app',
-        element: <div className="p-4 text-black">Área logada do repetilngua!</div>,
+        element: <AppLayout />,
+        children: [
+          {
+            index: true,
+            element: <Dashboard />,
+          }
+        ]
       },
     ],
   }

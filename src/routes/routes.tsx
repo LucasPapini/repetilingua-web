@@ -27,7 +27,19 @@ export const router = createBrowserRouter([
           {
             index: true,
             element: <Dashboard />,
-          }
+          },
+          {
+            path: 'texts',
+            element: <div>Página que conterar todos os textos.</div>
+          },
+          {
+            path: 'modules',
+            element: <div>Página que conterar todos os Módulos.</div>
+          },
+          {
+            path: 'flashCards',
+            element: <div>Página que conterar todos os Flash Cards.</div>
+          },
         ]
       },
     ],

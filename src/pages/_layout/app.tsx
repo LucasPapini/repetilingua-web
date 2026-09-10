@@ -1,16 +1,22 @@
+import { MobileNav } from "@/components/MobileNav";
+import { Sidebar } from "@/components/Sidebar";
 import { Outlet } from "react-router-dom";
 
 export function AppLayout() {
   return (
-    <div className="flex min-h-screen flex-col font-sans antialiased">
+    <div className="flex min-h-screen flex-col font-sans antialiased bg-zinc-50">
       <div className="flex flex-1">
-        {/* Sidebar */}
-        <div>Sidebar</div>
-        {/* Conteúdo */}
-        <div className="flex flex-1 flex-col gap-4 p-4 pt-6 sm:p-6 md:p-8">
+        {/* Sidebar visível apenas em telas médias/grandes */}
+        <Sidebar />
+
+        {/* Conteúdo com padding inferior em mobile (pb-20) para dar espaço à Bottom Bar */}
+        <main className="flex flex-1 flex-col gap-4 p-4 pb-20 pt-6 sm:p-6 md:p-8 md:pb-8">
           <Outlet />
-        </div>
+        </main>
       </div>
+
+      {/* Navegação fixa no rodapé apenas em mobile */}
+      <MobileNav />
     </div>
-  )
+  );
 }

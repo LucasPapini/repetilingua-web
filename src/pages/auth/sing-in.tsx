@@ -6,13 +6,15 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import z from "zod";
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation } from "@tanstack/react-query";
+import { signInRequest } from "@/api/sign-in";
 
 const signInSchema = z.object({
   email: z.string().email('O endereço de e-mail está invalido'),
   password: z.string().min(6, 'A senha precisa ter no minimo 6 caracteres'),
 })
 
-type SignInForm = z.infer<typeof signInSchema>
+export type SignInForm = z.infer<typeof signInSchema>
 
 export function SingIn() {
 
@@ -28,9 +30,16 @@ export function SingIn() {
     },
   });
 
+  const { mutateAsync: signIn } = useMutation({
+    mutationFn: signInRequest
+  })
+
   async function handleSignIn(data: SignInForm) {
-    // data já vem 100% validado e tipado pelo Zod
-    console.log('Dados do login:', data);
+    try {
+      await signIn(data)
+    } catch (error) {
+      console.error('Error ao fazer o login. Error:: ', error)
+    }
   }
 
   return (

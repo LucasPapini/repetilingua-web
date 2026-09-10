@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import z from "zod";
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useAuth } from "@/hooks/useAuth";
+import { toast } from "sonner";
 
 const signInSchema = z.object({
   email: z.string().email('O endereço de e-mail está invalido'),
@@ -35,7 +36,15 @@ export function SingIn() {
     try {
       await signIn(data)
       navigate('/app', { replace: true });
+      // Toast de Sucesso
+      toast.success('Login realizado com sucesso!', {
+        description: 'Seja bem-vindo de volta ao RepetiLíngua.',
+      });
     } catch (error) {
+      // Toast de Erro
+      toast.error('Falha ao autenticar', {
+        description: 'Verifique seu e-mail e senha e tente novamente.',
+      });
       console.error('Error ao fazer o login. Error:: ', error)
     }
   }

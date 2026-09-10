@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <!-- Fundo Vermelho Arredondado (Squircle/App Icon Style) -->
+  <rect width="512" height="512" rx="112" fill="#FF0015" />
+
+  <!-- Símbolo de Tradução em Branco -->
+  <g fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Caractere Chinês/Japonês (Superior Esquerdo) -->
+    <path stroke-width="26" d="M145 180 h100" />
+    <path stroke-width="24" d="M195 145 v105" />
+    <path stroke-width="24" d="M160 215 c15 25 35 40 60 50" />
+    <path stroke-width="24" d="M230 215 c-15 25-35 40-60 50" />
+    <circle cx="155" cy="155" r="7" fill="#FFFFFF" />
+
+    <!-- Letra 'A' (Inferior Direito) -->
+    <path stroke-width="28" d="M265 365 L320 230 L375 365" />
+    <path stroke-width="24" d="M280 325 h80" />
+  </g>
+</svg>

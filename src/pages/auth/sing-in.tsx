@@ -3,11 +3,10 @@ import { Input } from "@/components/Input";
 import { Title } from "@/components/Title";
 import { ChevronRight } from "lucide-react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import z from "zod";
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useMutation } from "@tanstack/react-query";
-import { signInRequest } from "@/api/sign-in";
+import { useAuth } from "@/hooks/useAuth";
 
 const signInSchema = z.object({
   email: z.string().email('O endereço de e-mail está invalido'),
@@ -17,6 +16,8 @@ const signInSchema = z.object({
 export type SignInForm = z.infer<typeof signInSchema>
 
 export function SingIn() {
+  const { signIn } = useAuth();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -30,13 +31,10 @@ export function SingIn() {
     },
   });
 
-  const { mutateAsync: signIn } = useMutation({
-    mutationFn: signInRequest
-  })
-
   async function handleSignIn(data: SignInForm) {
     try {
       await signIn(data)
+      navigate('/app', { replace: true });
     } catch (error) {
       console.error('Error ao fazer o login. Error:: ', error)
     }

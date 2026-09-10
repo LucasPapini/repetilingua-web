@@ -10,8 +10,6 @@ interface SignInResponse {
 export async function signInRequest(data: SignInForm): Promise<SignInResponse> {
   const params = new URLSearchParams();
 
-  params.append('client-secret', import.meta.env.VITE_API_CLIENT_SECRET);
-  params.append('client-id', import.meta.env.VITE_API_CLIENT_ID);
   params.append('username', data.email);
   params.append('password', data.password);
   params.append('grant_type', 'password');

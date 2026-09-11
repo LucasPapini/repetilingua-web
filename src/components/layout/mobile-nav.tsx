@@ -17,8 +17,8 @@ export function MobileNav() {
             end={item.to === "/app"}
             className={({ isActive }) =>
               `flex flex-col items-center justify-center gap-1 text-xs font-medium transition-colors ${isActive
-                ? "text-brand-primary-navy font-semibold"
-                : "text-white hover:text-brand-primary-deep"
+                ? "text-gray-500 font-semibold"
+                : "text-gray-50 hover:text-brand-primary-deep"
               }`
             }
           >

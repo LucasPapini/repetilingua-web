@@ -1,5 +1,5 @@
-import { MobileNav } from "@/components/MobileNav";
-import { Sidebar } from "@/components/Sidebar";
+import { MobileNav } from "@/components/layout/mobile-nav";
+import { Sidebar } from "@/components/layout/sidebar";
 import { Outlet } from "react-router-dom";
 
 export function AppLayout() {

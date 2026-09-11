@@ -1,4 +1,4 @@
-import { ComponentProps } from 'react';
+import type { ComponentProps } from 'react';
 
 type ButtonVariant = 'primary' | 'secondary' | 'outline';
 

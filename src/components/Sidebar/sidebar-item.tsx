@@ -18,6 +18,7 @@ export function SidebarItem({
   return (
     <NavLink
       to={to}
+      end={to === "/app"}
       className={({ isActive }) =>
         `
         flex

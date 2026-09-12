@@ -7,6 +7,7 @@ import { PrivateRoute } from './PrivateRoute';
 import { AppLayout } from '@/pages/_layout/app';
 import { Dashboard } from '@/pages/app/dashboard';
 import { Texts } from '@/pages/app/text';
+import { TextDetail } from '@/pages/app/text/text-detail';
 
 export const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ export const router = createBrowserRouter([
           {
             path: 'texts',
             element: <Texts />
+          },
+          {
+            path: 'texts/:id',
+            element: <TextDetail />
           },
           {
             path: 'modules',

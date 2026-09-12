@@ -73,7 +73,7 @@ export function DashboardCard({
 
       {
         description && (
-          <p className="text-xs font-medium text-brand-academic-gold">
+          <p className="text-xs font-medium text-brand-primary-deep">
             {description}
           </p>
         )

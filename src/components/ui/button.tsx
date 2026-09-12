@@ -1,6 +1,6 @@
 import type { ComponentProps } from 'react';
 
-type ButtonVariant = 'primary' | 'secondary' | 'outline';
+type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'danger_outline';
 
 interface ButtonProps extends ComponentProps<'button'> {
   variant?: ButtonVariant;
@@ -20,7 +20,8 @@ export function Button({
   const variants: Record<ButtonVariant, string> = {
     primary: 'bg-brand-primary-navy border border-transparent hover:bg-white hover:border-brand-primary-navy hover:text-brand-primary-navy text-white font-medium',
     secondary: 'bg-brand-primary-deep border border-transparent hover:bg-white hover:border-brand-primary-deep hover:text-brand-primary-deep text-white font-medium',
-    outline: 'border border-zinc-700 hover:bg-zinc-800 text-zinc-300 font-medium'
+    outline: 'border border-brand-primary-deep hover:text-white hover:bg-brand-primary-deep font-medium text-brand-primary-deep',
+    danger_outline: 'bg-transparent border border-red-500 text-red-500 hover:bg-red-500 hover:text-white',
   };
 
   return <button

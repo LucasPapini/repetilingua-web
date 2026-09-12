@@ -6,6 +6,7 @@ import { createBrowserRouter, Navigate } from 'react-router-dom';
 import { PrivateRoute } from './PrivateRoute';
 import { AppLayout } from '@/pages/_layout/app';
 import { Dashboard } from '@/pages/app/dashboard';
+import { Texts } from '@/pages/app/text';
 
 export const router = createBrowserRouter([
   {
@@ -30,7 +31,7 @@ export const router = createBrowserRouter([
           },
           {
             path: 'texts',
-            element: <div>Página que conterar todos os textos.</div>
+            element: <Texts />
           },
           {
             path: 'modules',

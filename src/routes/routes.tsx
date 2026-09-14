@@ -8,6 +8,7 @@ import { AppLayout } from '@/pages/_layout/app';
 import { Dashboard } from '@/pages/app/dashboard';
 import { Texts } from '@/pages/app/text';
 import { TextDetail } from '@/pages/app/text/text-detail';
+import { TextStudy } from '@/pages/app/text/text-study';
 
 export const router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ export const router = createBrowserRouter([
           {
             path: 'texts/:id',
             element: <TextDetail />
+          },
+          {
+            path: 'texts/:textPartId/part/:partNumber/study/:idDoTexto',
+            element: <TextStudy />
           },
           {
             path: 'modules',

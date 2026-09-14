@@ -18,10 +18,10 @@ import { Link } from "react-router-dom";
 interface TableProps {
   columns: TableColumn;
   data?: TextPartStatsProps[];
+  idDoTexto: number;
 }
 
-export function Table({ columns, data = [] }: TableProps) {
-  console.log("## data:: ", data)
+export function Table({ columns, data = [], idDoTexto }: TableProps) {
   return (
     <div className="mt-5 w-full overflow-x-auto rounded-lg border border-brand-container-highest shadow-sm">
       <table className="w-full min-border-collapse text-left text-sm">
@@ -65,11 +65,11 @@ export function Table({ columns, data = [] }: TableProps) {
 
                 {/* Coluna 3: Ações */}
                 <td className="px-4 py-3 text-right whitespace-nowrap">
-                  {/* <Link to={`/app/texts/:id/part/:idPart/study/${part?.textPartId}`}> */}
-                  <Button variant="secondary" className="h-8">
-                    Praticar
-                  </Button>
-                  {/* </Link> */}
+                  <Link to={`/app/texts/${idDoTexto}/part/${part?.partNumber}/study/${idDoTexto}`}>
+                    <Button variant="secondary" className="h-8">
+                      Praticar
+                    </Button>
+                  </Link>
                 </td>
               </tr>
             ))

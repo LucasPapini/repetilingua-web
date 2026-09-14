@@ -2,6 +2,7 @@ import { getTextStats } from "@/api/get-text-detail-stats"
 import { getPartStats } from "@/api/get-text-part-stats"
 import { Button } from "@/components/ui/button"
 import { LoadingSpinner } from "@/components/ui/loading-spinner"
+import { Modal } from "@/components/ui/modal"
 import { Table } from "@/components/ui/table"
 import { TextDetailCard } from "@/components/ui/text-detail-card"
 import { Title } from "@/components/ui/title"
@@ -9,9 +10,11 @@ import { tableTextDetail } from "@/data/table-text-detail"
 import { isNotEmpty } from "@/helpers/not-empty"
 import { useQuery } from "@tanstack/react-query"
 import { ArrowLeft } from "lucide-react"
+import { useState } from "react"
 import { Link, useParams } from "react-router-dom"
 
 export function TextDetail() {
+  const [isNewParagraphOpen, setIsNewParagraphOpen] = useState(false)
   const { id } = useParams()
   const { data: textDetailStats, isLoading: isLoadingTextDetail } = useQuery({
     queryKey: ['texts-detail', id],
@@ -77,6 +80,7 @@ export function TextDetail() {
               <Button
                 type="submit"
                 variant="secondary"
+                onClick={() => setIsNewParagraphOpen(true)}
               >
                 Novo Parágrafo
               </Button>
@@ -85,6 +89,7 @@ export function TextDetail() {
             <Table
               columns={tableTextDetail}
               data={textPartStas}
+              idDoTexto={id}
             />
           </div>
         ) : (
@@ -104,6 +109,43 @@ export function TextDetail() {
           </div>
         )}
       </div>
+
+      {/* Componente Modal */}
+      <Modal
+        isOpen={isNewParagraphOpen}
+        onClose={() => setIsNewParagraphOpen(false)}
+        title="Cadastrar Novo Parágrafo"
+        description="Preencha o conteúdo do parágrafo em inglês."
+      >
+        <form className="flex flex-col gap-4" onSubmit={(e) => e.preventDefault()}>
+          <div>
+            <label className="block text-sm font-medium text-brand-primary-navy mb-1">
+              Conteúdo
+            </label>
+            <textarea
+              className="w-full rounded-md border border-brand-container-highest bg-brand-container-low p-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary-navy"
+              rows={4}
+              placeholder="Cole ou digite o texto aqui..."
+            />
+          </div>
+
+          <div className="flex justify-end gap-3 mt-2">
+            <Button
+              type="button"
+              variant="danger_outline"
+              onClick={() => setIsNewParagraphOpen(false)}
+            >
+              Cancelar
+            </Button>
+            <Button
+              type="submit" variant="secondary"
+              onClick={() => setIsNewParagraphOpen(false)}
+            >
+              Salvar
+            </Button>
+          </div>
+        </form>
+      </Modal>
     </>
   )
 }

@@ -66,7 +66,7 @@ export function SingIn() {
         <Input
           type="password"
           label="Senha"
-          placeholder="******************"
+          placeholder="******"
           error={errors.password?.message}
           {...register('password')}
         />

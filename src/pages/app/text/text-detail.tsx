@@ -1,20 +1,26 @@
-import { getTextDetail } from "@/api/get-text-detail"
 import { getTextStats } from "@/api/get-text-detail-stats"
+import { getPartStats } from "@/api/get-text-part-stats"
 import { Button } from "@/components/ui/button"
 import { LoadingSpinner } from "@/components/ui/loading-spinner"
+import { Table } from "@/components/ui/table"
 import { TextDetailCard } from "@/components/ui/text-detail-card"
 import { Title } from "@/components/ui/title"
+import { tableTextDetail } from "@/data/table-text-detail"
 import { useQuery } from "@tanstack/react-query"
 import { useParams } from "react-router-dom"
 
 export function TextDetail() {
   const { id } = useParams()
-  const { data: textDetailStats, isLoading: isisLoadingTextDetail } = useQuery({
+  const { data: textDetailStats, isLoading: isLoadingTextDetail } = useQuery({
     queryKey: ['texts-detail'],
     queryFn: () => getTextStats(Number(id))
   })
+  const { data: textPartStas, isLoading: isLoadingTextPartStats } = useQuery({
+    queryKey: ['text-parts-stats'],
+    queryFn: () => getPartStats(Number(id))
+  })
 
-  if (isisLoadingTextDetail) {
+  if (isLoadingTextDetail) {
     return <LoadingSpinner />
   }
 
@@ -63,6 +69,10 @@ export function TextDetail() {
           Novo Paragrafo
         </Button>
       </div>
+      <Table
+        columns={tableTextDetail}
+        data={textPartStas}
+      />
     </>
   )
 }

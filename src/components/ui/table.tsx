@@ -24,7 +24,7 @@ export function Table({ columns, data = [] }: TableProps) {
   console.log("## data:: ", data)
   return (
     <div className="mt-5 w-full overflow-x-auto rounded-lg border border-brand-container-highest shadow-sm">
-      <table className="w-full border-collapse text-left text-sm">
+      <table className="w-full min-border-collapse text-left text-sm">
         <thead className="bg-brand-container-low border-b border-brand-container-highest text-xs uppercase tracking-wider text-brand-primary-navy/70">
           <tr>
             {columns?.map((column) => (
@@ -54,14 +54,14 @@ export function Table({ columns, data = [] }: TableProps) {
                 </td>
 
                 {/* Coluna 2: Repetições */}
-                <td className="px-4 py-3 text-right whitespace-nowrap font-medium">
-                  <span className="font-bold text-brand-primary-navy">
+                {/* <td className="px-4 py-3 text-center   whitespace-nowrap font-medium"> */}
+                {/* <span className="font-bold text-brand-primary-navy">
                     {part.completedParts}
-                  </span>
-                  <span className="text-brand-primary-navy/60">
-                    {' '}/ {part.totalRepetitions}
-                  </span>
-                </td>
+                  </span> */}
+                {/* <span className="text-brand-primary-navy/60">
+                    {part.totalRepetitions}
+                  </span> */}
+                {/* </td> */}
 
                 {/* Coluna 3: Ações */}
                 <td className="px-4 py-3 text-right whitespace-nowrap">

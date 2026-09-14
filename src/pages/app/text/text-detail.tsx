@@ -72,7 +72,7 @@ export function TextDetail() {
               variant="red"
             />
 
-            <div className="flex justify-between gap-5 items-center mt-3 mb-3">
+            <div className="flex justify-between gap-10 items-center mt-3 mb-3">
               <Title title="Parágrafos" />
               <Button
                 type="submit"
@@ -89,7 +89,7 @@ export function TextDetail() {
           </div>
         ) : (
           <div className="flex flex-col gap-4 w-full">
-            <div className="flex w-full items-center justify-between mt-3">
+            <div className="flex w-full items-center justify-between mt-3 gap-10">
               <Title title="Parágrafos" />
               <Button
                 type="submit"

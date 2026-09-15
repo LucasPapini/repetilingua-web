@@ -1,14 +1,14 @@
 import { Link } from "react-router-dom";
-import { Button } from "./button";
-import { Title } from "./title";
+import { Button } from "@/components/ui/button";
+import { Title } from "@/components/ui/title";
 import { useEffect, useState } from "react";
-import { Modal } from "./modal";
+import { Modal } from "@/components/ui/modal";
 import z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Input } from "./input";
+import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
-import { Select } from "./select";
+import { Select } from "@/components/ui/select";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { updateText } from "@/api/put-update-text";
 

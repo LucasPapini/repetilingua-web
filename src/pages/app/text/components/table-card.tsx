@@ -1,5 +1,5 @@
 import type { TableColumn } from "@/data/table-text-detail";
-import { Button } from "./button";
+import { Button } from "../../../../components/ui/button";
 import type { TextPartStatsProps } from "@/api/get-text-part-stats";
 import { Link } from "react-router-dom";
 

@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { LoadingSpinner } from "@/components/ui/loading-spinner";
 import { Modal } from "@/components/ui/modal";
-import { TextCard } from "@/components/ui/texts-card";
+import { TextCard } from "@/pages/app/text/components/texts-card";
 import { Title } from "@/components/ui/title";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -78,6 +78,7 @@ export function Texts() {
           Novo Texto
         </Button>
       </div>
+
 
       {texts?.content?.map((text, index) => (
         <TextCard

@@ -99,6 +99,7 @@ export function TextDetail() {
               <Button
                 type="submit"
                 variant="secondary"
+                onClick={() => setIsNewParagraphOpen(true)}
               >
                 Novo Parágrafo
               </Button>

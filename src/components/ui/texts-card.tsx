@@ -26,7 +26,7 @@ export function TextCard({
     <div className="flex flex-col gap-5 h-auto w-full border border-gray-300 p-5 mt-3 rounded-lg" key={id}>
       <div className="flex flex-1 flex-row justify-between items-center">
         <div className="bg-brand-container-highest rounded-lg">
-          <h4 className="font-semibold uppercase p-2">{module}</h4>
+          <h4 className="font-semibold uppercase p-2 truncate w-30">{module}</h4>
         </div>
         <p className="text-base ">Em curso</p>
       </div>

@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { LoadingSpinner } from "@/components/ui/loading-spinner";
 import { Modal } from "@/components/ui/modal";
-import { TextCard } from "@/pages/app/text/components/texts-card";
+
 import { Title } from "@/components/ui/title";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -12,6 +12,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import z from "zod";
+import { TextCard } from "./components/texts-card";
 
 const createNewTextSchema = z.object({
   title: z.string().min(3, 'O campo Titulo* é requerido o minimo de 3 caracteres!'),

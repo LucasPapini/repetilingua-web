@@ -11,6 +11,7 @@ import { toast } from "sonner";
 import { Select } from "@/components/ui/select";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { updateText } from "@/api/put-update-text";
+import { deleteAnText, type DeleteAnText } from "@/api/delete-text";
 
 interface TextCardProps {
   id: number | string
@@ -62,6 +63,12 @@ export function TextCard({
       queryClient.invalidateQueries({ queryKey: ['texts'] });
     },
   });
+  const { mutateAsync: deleteAnTextFn } = useMutation({
+    mutationFn: deleteAnText,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['texts'] });
+    }
+  })
 
   // Callback que monitora alteração do valor no campo
   useEffect(() => {
@@ -92,6 +99,22 @@ export function TextCard({
     }
   }
 
+  async function handleDeleteAnText(id: DeleteAnText) {
+    try {
+      deleteAnTextFn(id)
+      setOpenDelete(false)
+      // Toast de Sucesso
+      toast.success('Texto excluído com sucesso!', {
+        description: 'Todos os parágrafos, áudios e progressos associados foram removidos.',
+      });
+    } catch (error) {
+      // Toast de Erro
+      toast.error('Falha ao deletar', {
+        description: 'Verifique se o texto selecionado aparece em seu carregamento.',
+      });
+      console.error('Error ao fazer o login. Error:: ', error)
+    }
+  }
   return (
     <div className="flex flex-col gap-5 h-auto w-full border border-gray-300 p-5 mt-3 rounded-lg" key={id}>
       <div className="flex flex-1 flex-row justify-between items-center">
@@ -184,6 +207,33 @@ export function TextCard({
             </Button>
           </div>
         </form>
+      </Modal>
+
+      {/**
+       * Componente Modal
+       * Delete an Text
+       **/}
+      <Modal
+        isOpen={openDelete}
+        onClose={() => setOpenDelete(false)}
+        title="Excluir Texto"
+        description="Esta ação excluirá o texto e todos os seus conteúdos vinculados, incluindo parágrafos, áudios e progressos."
+      >
+        <div className="flex flex-row gap-4">
+          <Button
+            type="button"
+            variant="danger_outline"
+            onClick={() => setOpenDelete(false)}
+          >
+            Cancelar
+          </Button>
+          <Button
+            type="submit" variant="secondary"
+            onClick={() => handleDeleteAnText(id)}
+          >
+            Confirmar
+          </Button>
+        </div>
       </Modal>
     </div>
   )

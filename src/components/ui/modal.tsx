@@ -52,7 +52,7 @@ export function Modal({
               {title}
             </h3>
             {description && (
-              <p className="mt-1 text-sm text-brand-primary-navy/70">
+              <p className="mt-2 text-sm text-brand-primary-navy/70">
                 {description}
               </p>
             )}

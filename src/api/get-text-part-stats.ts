@@ -21,6 +21,13 @@ export interface TextPartStatsProps {
   last: boolean
 }
 
+export interface textPartStatsQuery {
+  pageIndex?: number | null
+  orderId?: string | null
+  customerName?: string | null
+  status?: string | null
+}
+
 export async function getPartStats(idText: number): Promise<TextPartStatsProps> {
   const response = await api.get(`/texts-parts/${idText}/stats?pageIndex=0`)
   return response.data;

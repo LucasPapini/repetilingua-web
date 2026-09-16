@@ -13,6 +13,8 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import z from "zod";
 import { TextCard } from "./components/texts-card";
+import { Pagination } from "@/components/ui/pagination";
+import { useSearchParams } from "react-router-dom";
 
 const createNewTextSchema = z.object({
   title: z.string().min(3, 'O campo Titulo* é requerido o minimo de 3 caracteres!'),
@@ -22,6 +24,14 @@ export type CreateNewTextForm = z.infer<typeof createNewTextSchema>
 
 export function Texts() {
   const [isNewTextOpen, setIsNewTextOpen] = useState(false)
+  const [searchParams, setSearchParams] = useSearchParams()
+  const orderId = searchParams.get('orderId')
+  const customerName = searchParams.get('customerName')
+  const pageIndex = z.coerce
+    .number()
+    .transform((page) => page - 1)
+    .parse(searchParams.get('page') ?? '1')
+  const status = searchParams.get('status')
   const {
     register,
     handleSubmit,
@@ -36,7 +46,12 @@ export function Texts() {
   });
   const { data: texts, isLoading: isLoadingTexts } = useQuery({
     queryKey: ['texts'],
-    queryFn: () => getTexts({}),
+    queryFn: () => getTexts({
+      pageIndex,
+      orderId,
+      customerName,
+      status,
+    }),
   })
   const { mutateAsync: createNewTextFn } = useMutation({
     mutationFn: createNewText
@@ -58,6 +73,14 @@ export function Texts() {
       });
       console.error('Error ao fazer o login. Error:: ', error)
     }
+  }
+
+  function handlePaginate(pageIndex: number) {
+    setSearchParams((state) => {
+      state.set('page', (pageIndex + 1).toString())
+
+      return state
+    })
   }
 
   if (isLoadingTexts) {
@@ -90,6 +113,13 @@ export function Texts() {
           completed={text.completed}
         />
       ))}
+
+      <Pagination
+        onPageChange={handlePaginate}
+        pageIndex={texts?.pageable?.pageNumber}
+        totalCount={texts?.totalElements}
+        perPage={texts?.pageable?.pageSize}
+      />
 
       {/**
        * Componente Modal

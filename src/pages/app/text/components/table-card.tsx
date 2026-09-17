@@ -2,6 +2,12 @@ import type { TableColumn } from "@/data/table-text-detail";
 import { Button } from "../../../../components/ui/button";
 import type { TextPartStatsProps } from "@/api/get-text-part-stats";
 import { Link } from "react-router-dom";
+import { Play, SquarePen, Trash } from "lucide-react";
+import { useState } from "react";
+import { Modal } from "@/components/ui/modal";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { deleteAnPartText, type DeleteAnPartText } from "@/api/delete-part-text";
+import { toast } from "sonner";
 
 // Receber um objeto para as info de header
 // percorrer esse objeto e apresetanr na tela.
@@ -22,6 +28,29 @@ interface TableProps {
 }
 
 export function Table({ columns, data = [], idDoTexto }: TableProps) {
+  const [openDelete, setOpenDelete] = useState(false)
+  const [isPartTextId, setIsPartTextId] = useState();
+  const queryClient = useQueryClient();
+  const { mutateAsync: deleteAnPartTextFn } = useMutation({
+    mutationFn: deleteAnPartText,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['text-parts-stats'] });
+    }
+  })
+  async function handleDeleteAnText(id: DeleteAnPartText) {
+    try {
+      deleteAnPartTextFn(id);
+      setOpenDelete(false)
+      // Toast de Sucesso
+      toast.success('Paragrafo excluído com sucesso!');
+    } catch (error) {
+      // Toast de Erro
+      toast.error('Falha ao deletar', {
+        description: 'Verifique se o texto selecionado aparece em seu carregamento.',
+      });
+      console.error('Error ao fazer o login. Error:: ', error)
+    }
+  }
   return (
     <div className="mt-5 w-full overflow-x-auto rounded-lg border border-brand-container-highest shadow-sm">
       <table className="w-full min-border-collapse text-left text-sm">
@@ -65,11 +94,23 @@ export function Table({ columns, data = [], idDoTexto }: TableProps) {
 
                 {/* Coluna 3: Ações */}
                 <td className="px-4 py-3 text-right whitespace-nowrap">
-                  <Link to={`/app/texts/${idDoTexto}/part/${part?.partNumber}/study/${idDoTexto}`}>
-                    <Button variant="secondary" className="h-8">
-                      Praticar
+                  <div className="flex flex-row gap-5">
+                    <Link to={`/app/texts/${idDoTexto}/part/${part?.partNumber}/study/${idDoTexto}`}>
+                      <Button variant="secondary" className="h-8">
+                        <Play size={15} />
+                      </Button>
+                    </Link>
+                    <Button variant="outline" className="h-8">
+                      <SquarePen size={15} />
                     </Button>
-                  </Link>
+                    <Button
+                      variant="danger_outline"
+                      className="h-8"
+                      onClick={() => { setIsPartTextId(part?.textPartId); setOpenDelete(true) }}
+                    >
+                      <Trash size={15} />
+                    </Button>
+                  </div>
                 </td>
               </tr>
             ))
@@ -85,6 +126,33 @@ export function Table({ columns, data = [], idDoTexto }: TableProps) {
           )}
         </tbody>
       </table>
+      {/**
+        * Componente Modal
+        * Delete an Part Text
+      **/}
+      <Modal
+        isOpen={openDelete}
+        onClose={() => setOpenDelete(false)}
+        title="Excluir Texto"
+        description="Esta ação excluirá o texto e todos os seus conteúdos vinculados, incluindo parágrafos, áudios e progressos."
+      >
+
+        <div className="flex flex-row gap-4">
+          <Button
+            type="button"
+            variant="danger_outline"
+            onClick={() => setOpenDelete(false)}
+          >
+            Cancelar
+          </Button>
+          <Button
+            type="submit" variant="secondary"
+            onClick={() => handleDeleteAnText(isPartTextId ?? 0)}
+          >
+            Confirmar
+          </Button>
+        </div>
+      </Modal>
     </div>
   )
 }

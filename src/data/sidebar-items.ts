@@ -19,15 +19,15 @@ export const sidebarItems: SidebarItemData[] = [
     icon: 'TextInitial',
   },
 
-  {
-    label: 'Modulos',
-    to: '/app/modules',
-    icon: 'Puzzle',
-  },
+  // {
+  //   label: 'Modulos',
+  //   to: '/app/modules',
+  //   icon: 'Puzzle',
+  // },
 
-  {
-    label: 'FlashCards',
-    to: '/app/flashcards',
-    icon: 'CardSim',
-  },
+  // {
+  //   label: 'FlashCards',
+  //   to: '/app/flashcards',
+  //   icon: 'CardSim',
+  // },
 ]

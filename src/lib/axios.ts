@@ -9,9 +9,13 @@ export const api = axios.create({
 
 // Interceptador opcional para injetar o Token JWT
 api.interceptors.request.use((config) => {
-  const token = localStorage.getItem('@repetilngua:access_token') // Ou via cookies/state
+  // Corrigido para incluir a letra "i" em repetilingua
+  const token = localStorage.getItem('@repetilingua:access_token');
+
   if (token) {
-    config.headers.Authorization = `Bearer ${token}`
+    config.headers.Authorization = `Bearer ${token}`;
+    config.headers['ngrok-skip-browser-warning'] = 'true';
   }
-  return config
+
+  return config;
 });

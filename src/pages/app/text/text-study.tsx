@@ -1,10 +1,13 @@
-import { getTextPartStudy } from "@/api/get-text-part-study";
+import { getTextPartStudy, type PartTextStudyProps } from "@/api/get-text-part-study";
 import { LoadingSpinner } from "@/components/ui/loading-spinner";
 import { Title } from "@/components/ui/title";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { ArrowLeft } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { AudioPlayer } from "./components/text-audio-player";
+import { StudyProgressNav, type ProgressData, type ProgressStage } from "@/components/layout/study-progress-nav";
+import { toast } from "sonner";
+import { postProgressPartText } from "@/api/post-progress-part-text";
 
 export function TextStudy() {
   const { textPartId, partNumber, idDoTexto } = useParams()
@@ -12,10 +15,64 @@ export function TextStudy() {
     queryKey: ['texts-part-study', textPartId, partNumber],
     queryFn: () => getTextPartStudy(Number(textPartId), Number(partNumber))
   });
+  const queryClient = useQueryClient();
+
+  const { mutateAsync: postProgressPartTextFn } = useMutation({
+    mutationFn: postProgressPartText
+  })
+
   if (isPartTextStudy) {
     return <LoadingSpinner />
   }
-  console.log("partTextStudy", partTextStudy)
+
+  const getCurrentDay = (data: PartTextStudyProps) => {
+    const day1Complet =
+      (data?.d1ReadListen ?? 0) >= 20 &&
+      (data?.d1ListenOnly ?? 0) >= 20 &&
+      (data?.d1FinalCheck ?? 0) >= 20
+
+    return day1Complet ? 2 : 1
+  }
+
+  const currentDay = getCurrentDay(partTextStudy)
+
+  const d1ReadListenComplete = (partTextStudy?.d1ReadListen ?? 0) >= 20
+  const d1ListenOnlyComplete = (partTextStudy?.d1ListenOnly ?? 0) >= 20
+
+  const d2ReadListenComplete = (partTextStudy?.d2ReadListen ?? 0) >= 20
+  const d2ListenOnlyComplete = (partTextStudy?.d2ListenOnly ?? 0) >= 20
+
+  /**
+   * Registra o progresso de repetição para o estágio clicado.
+   * @param data Dados atuais do progresso (opcional)
+   * @param field Estágio de estudo (ex: 'D1_READ_LISTEN', 'D1_LISTEN_ONLY', etc.)
+   */
+  const handleProgressClick = async (
+    data: ProgressData | undefined,
+    field: ProgressStage
+  ) => {
+    try {
+      const textId = idDoTexto
+      const { textPartId } = partTextStudy
+      // 1. Executa a chamada à API passando os IDs da rota/estado e o estágio clicado
+      await postProgressPartTextFn({
+        textId,
+        textPartId,
+        field, // Envia exatamente a chave esperada pelo enum/switch no backend
+      })
+
+      // 2. Notifica o usuário
+      toast.success('Progresso registrado com sucesso!')
+
+      // 3. Invalida as queries de estudo para que os contadores dos badges atualizem imediatamente
+      queryClient.invalidateQueries({ queryKey: ['texts-part-study', textId, partNumber] })
+
+    } catch (error) {
+      toast.error('Erro ao salvar o progresso.')
+      console.error('Erro ao registrar progresso: ', error)
+    }
+  }
+
   return (
     <div className="w-full max-w-full overflow-hidden">
       <Link
@@ -45,6 +102,12 @@ export function TextStudy() {
             )) || 'Nenhum conteúdo disponível.'
         )}
       </div>
+
+      <StudyProgressNav
+        currentDay={currentDay}
+        data={partTextStudy}
+        handleProgressClick={handleProgressClick}
+      />
     </div>
   );
 }

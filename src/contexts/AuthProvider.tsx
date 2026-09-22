@@ -13,7 +13,7 @@ interface JWTPayload {
   exp: number;
 }
 
-const TOKEN_KEY = '@repetilngua:access_token';
+const TOKEN_KEY = '@repetilingua:access_token';
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);

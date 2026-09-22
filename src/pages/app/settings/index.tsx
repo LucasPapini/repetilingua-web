@@ -8,8 +8,8 @@ export function Settings() {
   return (
     <div className="flex flex-col gap-6 max-w-2xl w-full mx-auto">
       {/* CARD DE PERFIL / USUÁRIO */}
-      <section className="flex items-center gap-4 p-4 rounded-2xl bg-gray-100 border border-gray-200">
-        <div className="flex justify-center items-center w-12 h-12 bg-zinc-800 text-white font-bold rounded-full text-base shrink-0">
+      <section className="flex items-center gap-4 p-4 rounded-2xl bg-white border border-gray-200">
+        <div className="flex justify-center items-center w-12 h-12 bg-brand-primary-deep text-white font-bold rounded-full text-base shrink-0">
           LP
         </div>
         <div className="flex flex-col">
@@ -20,7 +20,7 @@ export function Settings() {
       </section>
 
       {/* SEÇÃO: CONTAS E PREFERÊNCIAS */}
-      <section className="flex flex-col p-4 rounded-2xl bg-gray-100 border border-gray-200">
+      <section className="flex flex-col p-4 rounded-2xl bg-white border border-gray-200">
         <h2 className="text-xs font-bold uppercase tracking-wider text-zinc-500 mb-3">
           Contas e Preferências
         </h2>
@@ -41,7 +41,7 @@ export function Settings() {
       </section>
 
       {/* SEÇÃO: APRENDIZADO & CONTEÚDO */}
-      <section className="flex flex-col p-4 rounded-2xl bg-gray-100 border border-gray-200">
+      <section className="flex flex-col p-4 rounded-2xl bg-white border border-gray-200">
         <h2 className="text-xs font-bold uppercase tracking-wider text-zinc-500 mb-3">
           Aprendizado & Conteúdo
         </h2>

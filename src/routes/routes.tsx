@@ -9,6 +9,7 @@ import { Dashboard } from '@/pages/app/dashboard';
 import { Texts } from '@/pages/app/text';
 import { TextDetail } from '@/pages/app/text/text-detail';
 import { TextStudy } from '@/pages/app/text/text-study';
+import { Settings } from '@/pages/app/settings';
 
 export const router = createBrowserRouter([
   {
@@ -50,6 +51,10 @@ export const router = createBrowserRouter([
           {
             path: 'flashCards',
             element: <div>Página que conterar todos os Flash Cards.</div>
+          },
+          {
+            path: 'settings',
+            element: <Settings />
           },
         ]
       },

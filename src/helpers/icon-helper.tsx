@@ -14,6 +14,7 @@ import {
   Repeat,
   TextInitial,
   LogOut,
+  Settings,
 } from 'lucide-react'
 
 export const icons = {
@@ -32,7 +33,8 @@ export const icons = {
   TextInitial,
   Puzzle,
   CardSim,
-  LogOut
+  LogOut,
+  Settings
 }
 
 export type IconName = keyof typeof icons

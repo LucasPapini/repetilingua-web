@@ -30,4 +30,9 @@ export const sidebarItems: SidebarItemData[] = [
   //   to: '/app/flashcards',
   //   icon: 'CardSim',
   // },
+  {
+    label: 'Configurações',
+    to: '/app/settings',
+    icon: 'Settings',
+  },
 ]

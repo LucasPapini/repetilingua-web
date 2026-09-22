@@ -7,7 +7,7 @@ export function AppLayout() {
   return (
     <div className="flex min-h-screen flex-col font-sans antialiased bg-zinc-50">
       <div className="flex flex-1 sm:flex-row flex-col">
-        <Header />
+        {/* <Header /> */}
         {/* Sidebar visível apenas em telas médias/grandes */}
         <Sidebar />
 

@@ -1,5 +1,5 @@
 import { icons, type IconName } from "@/helpers/icon-helper";
-
+import { useState, useEffect } from "react";
 interface TextDetailCardProps {
   id: number | string;
   icon?: IconName;

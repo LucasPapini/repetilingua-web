@@ -4,11 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { LoadingSpinner } from "@/components/ui/loading-spinner";
 import { Modal } from "@/components/ui/modal";
-
+import { useState, useEffect } from "react";
 import { Title } from "@/components/ui/title";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import z from "zod";
@@ -59,7 +59,7 @@ export function Texts() {
 
   async function handleCreateNewText(data: CreateNewTextForm) {
     try {
-      createNewTextFn(data);
+      await createNewTextFn(data);
       reset();
       // Toast de Sucesso
       toast.success('Cadastro realizado com sucesso!', {

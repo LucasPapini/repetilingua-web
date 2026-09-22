@@ -1,7 +1,7 @@
 import { Search, X } from "lucide-react";
 import { Select } from "@/components/ui/select"; // Seu Select base
 import { Input } from "@/components/ui/input";   // Seu Input base
-
+import { useState, useEffect } from "react";
 interface TextFiltersProps {
   title?: string;
   onTitleChange?: (value: string) => void;

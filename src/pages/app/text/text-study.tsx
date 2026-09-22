@@ -8,7 +8,7 @@ import { AudioPlayer } from "./components/text-audio-player";
 import { StudyProgressNav, type ProgressData, type ProgressStage } from "@/components/layout/study-progress-nav";
 import { toast } from "sonner";
 import { postProgressPartText } from "@/api/post-progress-part-text";
-
+import { useState, useEffect } from "react";
 export function TextStudy() {
   const { textPartId, partNumber, idDoTexto } = useParams()
   const { data: partTextStudy, isLoading: isPartTextStudy } = useQuery({

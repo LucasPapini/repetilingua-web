@@ -1,3 +1,4 @@
+import { Header } from "@/components/header";
 import { MobileNav } from "@/components/layout/mobile-nav";
 import { Sidebar } from "@/components/layout/sidebar";
 import { Outlet } from "react-router-dom";
@@ -5,7 +6,8 @@ import { Outlet } from "react-router-dom";
 export function AppLayout() {
   return (
     <div className="flex min-h-screen flex-col font-sans antialiased bg-zinc-50">
-      <div className="flex flex-1">
+      <div className="flex flex-1 sm:flex-row flex-col">
+        <Header />
         {/* Sidebar visível apenas em telas médias/grandes */}
         <Sidebar />
 

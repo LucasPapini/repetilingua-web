@@ -13,6 +13,7 @@ import {
   RefreshCw,
   Repeat,
   TextInitial,
+  LogOut,
 } from 'lucide-react'
 
 export const icons = {
@@ -31,6 +32,7 @@ export const icons = {
   TextInitial,
   Puzzle,
   CardSim,
+  LogOut
 }
 
 export type IconName = keyof typeof icons

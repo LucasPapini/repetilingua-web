@@ -2,7 +2,7 @@ import type { IconName } from "@/helpers/icon-helper"
 
 interface SidebarItemData {
   label: string
-  to: string
+  to?: string
   icon: IconName
 }
 

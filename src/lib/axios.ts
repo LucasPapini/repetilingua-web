@@ -10,7 +10,7 @@ export const api = axios.create({
 
 // Interceptador opcional para injetar o Token JWT
 api.interceptors.request.use((config) => {
-  const token = localStorage.getItem('@repetilingua:access_token');
+  const token = localStorage.getItem('@repetilngua:access_token');
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }

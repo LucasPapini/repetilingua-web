@@ -24,12 +24,11 @@ export const sidebarItems: SidebarItemData[] = [
   //   to: '/app/modules',
   //   icon: 'Puzzle',
   // },
-
-  // {
-  //   label: 'FlashCards',
-  //   to: '/app/flashcards',
-  //   icon: 'CardSim',
-  // },
+  {
+    label: 'FlashCards',
+    to: '/app/flashcards',
+    icon: 'CardSim',
+  },
   {
     label: 'Configurações',
     to: '/app/settings',
